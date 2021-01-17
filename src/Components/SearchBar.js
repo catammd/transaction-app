@@ -1,5 +1,5 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
 
 export default class SearchBar extends React.Component {
   constructor(props) {
@@ -17,34 +17,38 @@ export default class SearchBar extends React.Component {
   };
 
   globalSearch = () => {
-        const { searchInput } = this.state;
-        let filteredData = this.props.data.filter((value) => {
-        return (
-            value.type.toLowerCase().includes(searchInput.toLowerCase()) ||
-            value.localizableTitle
-            .toLowerCase()
-            .includes(searchInput.toLowerCase()) ||
-            value.status
-            .toString()
-            .toLowerCase()
-            .includes(searchInput.toLowerCase())
-        );
+    const { searchInput } = this.state;
+    const localizedSearchInput = searchInput.toLowerCase();
+    let filteredData = this.props.data.filter((value) => {
+      return (
+        value.type.toLowerCase().includes(localizedSearchInput) ||
+        value.localizableTitle.toLowerCase().includes(localizedSearchInput) ||
+        value.status.toLowerCase().includes(localizedSearchInput) ||
+        value.time.toLowerCase().includes(localizedSearchInput) ||
+        value.categoryID.toLowerCase().includes(localizedSearchInput)
+      );
     });
 
     this.props.handleSetFilteredData(filteredData);
   };
 
   render() {
-
     return (
       <>
         <br />
-        <TextField
-          name='searchInput'
-          value={this.state.searchInput || ""}
-          onChange={this.handleChange}
-          label='Search'
-        />
+        <form noValidate autoComplete='off'>
+          <TextField
+            id='outlined-size-small'
+            variant='outlined'
+            fullWidth
+            size='small'
+            type='search'
+            name='searchInput'
+            value={this.state.searchInput || ""}
+            onChange={this.handleChange}
+            label='Search'
+          />
+        </form>
       </>
     );
   }

@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import { Paper } from "@material-ui/core";
-import SearchBar from './SearchBar';
-import Table from './TransactionTable';
+import { Box, Paper } from "@material-ui/core";
+import SearchBar from "./SearchBar";
+import Table from "./TransactionTable";
 
 class App extends React.Component {
   state = {
@@ -50,7 +50,7 @@ class App extends React.Component {
       ? filteredTransactions
       : transactions;
     return (
-      <Container maxWidth='xl' className='App'>
+      <Container maxWidth='lg' className='App'>
         <Paper>
           <Typography variant='h4' component='h1' gutterBottom>
             Transactions Web Interface
@@ -60,6 +60,7 @@ class App extends React.Component {
             handleSetFilteredData={this.handleSetFilteredData}
             handleSetSearchInput={this.handleSetSearchInput}
           />
+
           <Table
             data={dataToDisplay}
             header={[
