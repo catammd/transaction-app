@@ -5,7 +5,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import { format } from "date-fns";
 
 const renderAmount = (transaction) => {
@@ -33,7 +32,7 @@ const row = (transaction, header) => (
 );
 
 const TransactionTable = ({ data, header }) => (
-  <TableContainer component={Paper}>
+  <TableContainer>
     <Table aria-label="simple table">
         <TableHead>
             <TableRow>
