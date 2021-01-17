@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { format } from "date-fns";
 
 const renderAmount = (transaction) => {
-    return `${transaction.transactionAmount ? transaction.transactionAmount.amount : 0} ${transaction.transactionAmount ? transaction.transactionAmount.currency : ''}`;
+    return `${transaction.transactionAmount ? transaction.transactionAmount.amount : ''} ${transaction.transactionAmount ? transaction.transactionAmount.currency : ''}`;
 }
 
 const formatDate = (date) => {
@@ -33,17 +33,19 @@ const row = (transaction, header) => (
 
 const TransactionTable = ({ data, header }) => (
   <TableContainer>
-    <Table aria-label="simple table">
-        <TableHead>
-            <TableRow>
-                {header.map((x, i) => (
-                    <TableCell  key={`thc-${i}`}>{x.name}</TableCell >
-                ))}
-            </TableRow>
-        </TableHead>
-        <TableBody>{data.map(transaction => {
-            return row(transaction, header);
-        })}</TableBody>
+    <Table aria-label='Transactions table'>
+      <TableHead>
+        <TableRow>
+          {header.map((x, i) => (
+            <TableCell key={`thc-${i}`}>{x.name}</TableCell>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.map((transaction) => {
+          return row(transaction, header);
+        })}
+      </TableBody>
     </Table>
   </TableContainer>
 );
