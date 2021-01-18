@@ -2,13 +2,12 @@ import React from "react";
 import "./App.css";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import { Box, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import SearchBar from "./SearchBar";
 import Table from "./TransactionTable";
 
 class App extends React.Component {
   state = {
-    loading: true,
     transactions: [],
     filteredTransactions: [],
     searchInput: "",
@@ -37,18 +36,18 @@ class App extends React.Component {
     this.setState({ searchInput });
   };
 
-  render() {
-    if (this.state.loading) {
-      return <div>Retrieving data...</div>;
-    }
+  handleDelete = (transactionId) => {
+    this.setState((state) => ({
+      transactions: state.transactions.filter(
+        (item) => item.id !== transactionId
+      ),
+    }));
+  };
 
-    if (!this.state.transactions.length) {
-      return <div>No transactions</div>;
-    }
+  render() {
     let { transactions, filteredTransactions, searchInput } = this.state;
-    const dataToDisplay = searchInput.length
-      ? filteredTransactions
-      : transactions;
+    const tableData = searchInput.length ? filteredTransactions : transactions;
+
     return (
       <Container maxWidth='lg' className='App'>
         <Paper>
@@ -60,29 +59,42 @@ class App extends React.Component {
             handleSetFilteredData={this.handleSetFilteredData}
             handleSetSearchInput={this.handleSetSearchInput}
           />
-
+          {/* TODO: cleanup empty name property */}
           <Table
-            data={dataToDisplay}
+            data={tableData}
+            handleDelete={this.handleDelete}
             header={[
               {
-                name: "Transaction name",
+                name: "",
+                prop: "iconURL",
+              },
+              {
+                name: "",
+                prop: "type",
+              },
+              {
+                name: "",
                 prop: "localizableTitle",
               },
               {
-                name: "Transaction amount",
+                name: "",
                 prop: "amount",
               },
               {
-                name: "Category",
+                name: "",
+                prop: "time",
+              },
+              {
+                name: "",
                 prop: "categoryID",
               },
               {
-                name: "Status",
+                name: "",
                 prop: "status",
               },
               {
-                name: "Date",
-                prop: "time",
+                name: "",
+                prop: "delete",
               },
             ]}
           />
