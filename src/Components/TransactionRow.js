@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Fab from "@material-ui/core/Fab";
+import { withStyles } from "@material-ui/core/styles";
 import { format } from "date-fns";
 
 const renderAmount = (transaction) => {
@@ -32,6 +33,15 @@ const renderChipFormat = (type) => {
   return <Chip size='small' color='primary' label={capitalizeString(type)} />;
 };
 
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:hover": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    cursor: "pointer",
+  },
+}))(TableRow);
+
 class TransactionRow extends React.Component {
   state = { open: false };
 
@@ -40,7 +50,7 @@ class TransactionRow extends React.Component {
     const { open } = this.state;
     return (
       <React.Fragment>
-        <TableRow
+        <StyledTableRow
           key={transaction.id}
           onClick={() => this.setState(({ open }) => ({ open: !open }))}
         >
@@ -72,7 +82,7 @@ class TransactionRow extends React.Component {
               </TableCell>
             );
           })}
-        </TableRow>
+        </StyledTableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
             <Collapse in={open} timeout='auto' unmountOnExit>
