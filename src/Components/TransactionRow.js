@@ -48,6 +48,8 @@ class TransactionRow extends React.Component {
   render() {
     const { transaction, header, handleDelete } = this.props;
     const { open } = this.state;
+
+    // TODO: refactor this
     return (
       <React.Fragment>
         <StyledTableRow
