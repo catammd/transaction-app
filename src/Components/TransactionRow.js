@@ -7,6 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Fab from "@material-ui/core/Fab";
 import { format } from "date-fns";
 
 const renderAmount = (transaction) => {
@@ -57,7 +58,14 @@ class TransactionRow extends React.Component {
                   headerItem.prop === "status" ? (
                   renderChipFormat(transaction[headerItem.prop])
                 ) : headerItem.prop === "delete" ? (
-                  <DeleteIcon onClick={() => handleDelete(transaction.id)} />
+                  <Fab color='secondary' aria-label='delete' size='small'>
+                    <DeleteIcon
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDelete(transaction.id);
+                      }}
+                    />
+                  </Fab>
                 ) : (
                   transaction[headerItem.prop]
                 )}
@@ -66,7 +74,7 @@ class TransactionRow extends React.Component {
           })}
         </TableRow>
         <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
             <Collapse in={open} timeout='auto' unmountOnExit>
               <Box margin={1}>
                 <TransactionDetails details={transaction} />
