@@ -59,7 +59,7 @@ class App extends React.Component {
             handleSetFilteredData={this.handleSetFilteredData}
             handleSetSearchInput={this.handleSetSearchInput}
           />
-          {/* TODO: cleanup empty name property */}
+          {/* TODO: cleanup empty name property left after removin column headers */}
           <Table
             data={tableData}
             handleDelete={this.handleDelete}
