@@ -24,7 +24,6 @@ class App extends React.Component {
     const jsonResponse = await response.json();
     this.setState({
       transactions: jsonResponse.data.transactions,
-      loading: false,
     });
   }
 

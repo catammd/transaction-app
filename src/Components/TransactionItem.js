@@ -33,7 +33,7 @@ export default function TransactionItem({
   };
 
   return (
-    <div>
+    <React.Fragment>
       {(() => {
         switch (headerItem.prop) {
           case "amount":
@@ -61,6 +61,6 @@ export default function TransactionItem({
             return transactionData[headerItem.prop];
         }
       })()}
-    </div>
+    </React.Fragment>
   );
 }

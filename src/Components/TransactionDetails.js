@@ -24,9 +24,8 @@ const formatTransactionAmount = (transaction) => {
   }`;
 };
 
-export default function TransactionDetails(props) {
+export default function TransactionDetails({ details }) {
   const classes = useStyles();
-  const { details } = props;
   return (
     <Paper className={classes.paper} elevation={3}>
       <Typography variant='h6' component='h2' gutterBottom>
